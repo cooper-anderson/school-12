@@ -36,7 +36,7 @@ func decaguesser(min:Int, max:Int, lives lifeCount:Int, hints hintCount:Int) {
 			if (number < min || number > max) {
 				print("Out of bounds.")
 			} else if number == random {
-				print("\nYou win! It took you \(lifeCount - lives) \((lifeCount - lives == 1) ? "try" : "tries")!\n")
+				print("\nYou win! It took you \(lifeCount - lives + 1) \((lifeCount - lives == 0) ? "try" : "tries")!\n")
 				return
 			} else {
 				lives -= 1
