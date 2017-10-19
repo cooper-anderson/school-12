@@ -57,30 +57,57 @@ func rollDice(count: Int = 1, sides: Int = 6) -> Int {
 	return value
 }
 
+class Weapon : CustomStringConvertible {
+	let name: String
+	let damageMin: Int
+	let damageMax: Int
+	var description: String {
+		return "\(self.name) (\(self.damageMin) - \(self.damageMax))"
+	}
+
+	init(name: String = "", damageMin: Int = 0, damageMax: Int = 0) {
+		self.name = name
+		self.damageMin = damageMin
+		self.damageMax = damageMax
+	}
+
+	func getDamage() -> Int {
+		return getRandom(min: self.damageMin, max: self.damageMax)
+	}
+
+	static func getRandomName() -> String {
+		let modifiers = ["Broken", "Average", "Rare", "Mythical", "Legendary", "Sublime", "Unreal", "Rusty", "Large"]
+		let weapons = ["Spork", "Sword", "Axe", "Hammer", "Chainsaw", "Wooden Spoon", "Mace", "Nunchucks", "Chair"]
+		return modifiers[getRandom(min: 1, max: modifiers.count) - 1] + " " + weapons[getRandom(min: 1, max: weapons.count) - 1]
+	}
+}
+
 class Monster : CustomStringConvertible {
 	let name: String
-	let strength: Int
 	let dexterity: Int
 	var health: Int
 	let healthMax: Int
+	var weapon: Weapon
 	var description: String {
-		return "\(name):\n  strength: \(self.strength)\n  dexterity: \(self.dexterity)\n  health: \(self.health)/\(self.healthMax)"
+		return "\(name):\n  weapon: \("\(self.weapon)")\n  dexterity: \(self.dexterity)\n  health: \(self.health)/\(self.healthMax)"
 	}
 
 	init(name: String = "") {
 		self.name = name
-		self.strength = rollDice(count: 3)
 		self.dexterity = rollDice(count: 3)
 		self.healthMax = rollDice(count: 10)
 		self.health = self.healthMax
+		let damageMin = rollDice(count: 2)
+		self.weapon = Weapon(name: Weapon.getRandomName(), damageMin: damageMin, damageMax: damageMin + rollDice(count: 1))
 	}
 
 	func attack(target: Monster) {
 		if self.health < 0 {
 			return
 		} else if getRandom(min: 0, max: 19) < self.dexterity {
-			print("\(self.name) dealt \(self.strength) damage!")
-			target.health -= self.strength
+			let damage = self.weapon.getDamage()
+			print("\(self.name) dealt \(damage) damage with \(self.weapon.name)!")
+			target.health -= damage
 		} else {
 			print("\(self.name) missed!")
 		}
