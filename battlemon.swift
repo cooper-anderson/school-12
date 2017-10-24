@@ -82,14 +82,46 @@ class Weapon : CustomStringConvertible {
 	}
 }
 
+class Armor : CustomStringConvertible {
+	let name: String
+	let defense: Int
+	var durability: Int
+	var description: String {
+		return "\(self.name) (def: \(self.defense), dur: \(self.durability))"
+	}
+
+	init(name: String = "", defense: Int = 0, durability: Int = 0) {
+		self.name = name
+		self.defense = defense
+		self.durability = durability
+	}
+
+	func getDefense(target: Monster, damage: Int) -> Int {
+		if getRandom(min: 0, max: 10) <= 2 && self.durability >= 0 {
+			let defended = self.defense > damage ? damage : self.defense
+			self.durability -= 1
+			print("\(target.name) readies their \(self.name) and blocks for \(defended)")
+			return defended
+		}
+		return 0
+	}
+
+	static func getRandomName() -> String {
+		let modifiers = ["Broken", "Average", "Rare", "Mythical", "Legendary", "Sublime", "Unreal", "Rusty", "Large"]
+		let weapons = ["Shirt", "Chestplate", "Hauberk", "Leggings", "Greaves", "Helm", "Shield", "Gauntlets", "Thing"]
+		return modifiers[getRandom(min: 1, max: modifiers.count) - 1] + " " + weapons[getRandom(min: 1, max: weapons.count) - 1]
+	}
+}
+
 class Monster : CustomStringConvertible {
 	let name: String
 	let dexterity: Int
 	var health: Int
 	let healthMax: Int
 	var weapon: Weapon
+	var armor: Armor
 	var description: String {
-		return "\(name):\n  weapon: \("\(self.weapon)")\n  dexterity: \(self.dexterity)\n  health: \(self.health)/\(self.healthMax)"
+		return "\(name):\n  weapon: \(self.weapon)\n  armor: \(self.armor)\n  dexterity: \(self.dexterity)\n  health: \(self.health)/\(self.healthMax)"
 	}
 
 	init(name: String = "") {
@@ -99,13 +131,15 @@ class Monster : CustomStringConvertible {
 		self.health = self.healthMax
 		let damageMin = rollDice(count: 2)
 		self.weapon = Weapon(name: Weapon.getRandomName(), damageMin: damageMin, damageMax: damageMin + rollDice(count: 1))
+		self.armor = Armor(name: Armor.getRandomName(), defense: rollDice(count: 2), durability: rollDice(count: 3, sides: 2) - 3)
 	}
 
 	func attack(target: Monster) {
 		if self.health < 0 {
 			return
 		} else if getRandom(min: 0, max: 19) < self.dexterity {
-			let damage = self.weapon.getDamage()
+			var damage = self.weapon.getDamage()
+			damage -= target.armor.getDefense(target: target, damage: damage)
 			print("\(self.name) dealt \(damage) damage with \(self.weapon.name)!")
 			target.health -= damage
 		} else {
