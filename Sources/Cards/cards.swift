@@ -1,29 +1,29 @@
 import Foundation
 
-public func shuffleCards(array: Array<Any>, iterations: Int=1) -> Array<Any> {
-	var new = array
-	for _ in 1...iterations {
-		var current: Array<Any> = []
-		for _ in 1...new.count {
-			current.append(new.remove(at: getRandom(min: 0, max: new.count-1)))
-		}
-		new = current
-	}
-	return new
-}
-// public extension Array {
-// 	public func shuffle(iterations: Int=1) -> Array {
-// 		var new = self
-// 		for _ in 1...iterations {
-// 			var current: Array = []
-// 			for _ in 1...new.count {
-// 				current.append(new.remove(at: getRandom(min: 0, max: new.count-1)))
-// 			}
-// 			new = current
+// public func shuffleCards(array: Array<Any>, iterations: Int=1) -> Array<Any> {
+// 	var new = array
+// 	for _ in 1...iterations {
+// 		var current: Array<Any> = []
+// 		for _ in 1...new.count {
+// 			current.append(new.remove(at: getRandom(min: 0, max: new.count-1)))
 // 		}
-// 		return new
+// 		new = current
 // 	}
+// 	return new
 // }
+public extension Array {
+	public func shuffle(iterations: Int=1) -> Array {
+		var new = self
+		for _ in 1...iterations {
+			var current: Array = []
+			for _ in 1...new.count {
+				current.append(new.remove(at: getRandom(min: 0, max: new.count-1)))
+			}
+			new = current
+		}
+		return new
+	}
+}
 
 public func getRandom(min:Int, max:Int) -> Int {
 	return Int(arc4random_uniform(UInt32(max - min + 1)) + UInt32(min))
@@ -39,10 +39,10 @@ public class Suit {
 	}
 
 	public static let suits: Array<Suit> = [
-		Suit(name: "Spades", letter: "S"),
-		Suit(name: "Hearts", letter: "H"),
-		Suit(name: "Clubs", letter: "C"),
-		Suit(name: "Diamonds", letter: "D")
+		Suit(name: "Spades", letter: "♠"),
+		Suit(name: "Hearts", letter: "♥"),
+		Suit(name: "Clubs", letter: "♣"),
+		Suit(name: "Diamonds", letter: "♦")
 	]
 }
 
@@ -79,13 +79,15 @@ public class Rank {
 public class Card: CustomStringConvertible {
 	public let suit: Suit
 	public let rank: Rank
+	public var visible: Bool
 	public var description: String {
 		return "<\(self.getPrint())>"
 	}
 
-	public init(suit: Suit, rank: Rank) {
+	public init(suit: Suit, rank: Rank, visible: Bool=true) {
 		self.suit = suit
 		self.rank = rank
+		self.visible = visible
 	}
 
 	public func getPrint(abbreviate: Bool=false) -> String {
@@ -93,6 +95,15 @@ public class Card: CustomStringConvertible {
 			return self.rank.letter + self.suit.letter
 		}
 		return "\(self.rank.name) of \(self.suit.name)"
+	}
+
+	@discardableResult public func flip(visible: Bool?=nil) -> Card {
+		if let v = visible {
+			self.visible = v
+			return self
+		}
+		self.visible = !self.visible
+		return self
 	}
 
 	public static var cards: Array<Card> {
@@ -112,15 +123,49 @@ public class Deck: CustomStringConvertible {
 		return "<\(self.getPrint())>"
 	}
 
-	public init(full: Bool=true, shuffle: Bool=false) {
+	public init(full: Bool=true, shuffle: Bool=false, visible: Bool=false) {
 		self.cards = full ? Card.cards : []
 		if shuffle {
 			self.shuffle()
 		}
+		self.setCardVisibility(visible: visible)
 	}
 
-	public func shuffle(iterations: Int=1) {
-		self.cards = shuffleCards(array: self.cards, iterations: iterations) as! Array<Card>
+	@discardableResult public func shuffle(iterations: Int=1) -> Deck {
+		self.cards = self.cards.shuffle(iterations: iterations)
+		return self
+	}
+
+	@discardableResult public func popCard(index: Int=0) -> Card? {
+		if index == -1 {
+			return self.cards.remove(at: -1)
+		}
+		return index < self.cards.count ? self.cards.remove(at: index) : nil
+	}
+
+	@discardableResult public func addCard(_ card: Card) -> Deck {
+		self.cards.insert(card, at: 0)
+		return self
+	}
+
+	@discardableResult public func setCardVisibility(visible: Bool) -> Deck {
+		for c in self.cards {
+			c.flip(visible: visible)
+		}
+		return self
+	}
+
+	@discardableResult public func reverse() -> Deck {
+		self.cards = self.cards.reversed()
+		return self
+	}
+
+	@discardableResult public func flip(visible: Bool?=nil) -> Deck {
+		for c in self.cards {
+			c.flip(visible: visible)
+		}
+		self.reverse()
+		return self
 	}
 
 	public func getPrint(abbreviate: Bool=false, separator: String=", ") -> String {

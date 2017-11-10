@@ -9,7 +9,10 @@ let package = Package(
 		.executable(name: "Decaguesser", targets: ["Decaguesser"]),
 		.executable(name: "Hangman", targets: ["Hangman"]),
 		.executable(name: "Battlemon", targets: ["Battlemon"]),
-		.executable(name: "War", targets: ["War", "Cards"]),
+		.executable(name: "War", targets: ["War", "Cards", "DrawCards"]),
+	],
+	dependencies: [
+		.package(url: "https://github.com/Bouke/CNCurses", from: "3.0.3")
 	],
 	targets: [
 		.target(name: "Fizzbuzz"),
@@ -17,6 +20,7 @@ let package = Package(
 		.target(name: "Hangman"),
 		.target(name: "Battlemon"),
 		.target(name: "Cards"),
-		.target(name: "War", dependencies: ["Cards"]),
+		.target(name: "DrawCards", dependencies: ["Cards"]),
+		.target(name: "War", dependencies: ["Cards", "DrawCards"]),
 	]
 )
