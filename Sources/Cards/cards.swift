@@ -1,34 +1,44 @@
-
 import Foundation
 
-extension Array {
-	func shuffle(iterations: Int=1) -> Array {
-		var new = self
-		for _ in 1...iterations {
-			var current: Array = []
-			for _ in 1...new.count {
-				current.append(new.remove(at: getRandom(min: 0, max: new.count-1)))
-			}
-			new = current
+public func shuffleCards(array: Array<Any>, iterations: Int=1) -> Array<Any> {
+	var new = array
+	for _ in 1...iterations {
+		var current: Array<Any> = []
+		for _ in 1...new.count {
+			current.append(new.remove(at: getRandom(min: 0, max: new.count-1)))
 		}
-		return new
+		new = current
 	}
+	return new
 }
+// public extension Array {
+// 	public func shuffle(iterations: Int=1) -> Array {
+// 		var new = self
+// 		for _ in 1...iterations {
+// 			var current: Array = []
+// 			for _ in 1...new.count {
+// 				current.append(new.remove(at: getRandom(min: 0, max: new.count-1)))
+// 			}
+// 			new = current
+// 		}
+// 		return new
+// 	}
+// }
 
-func getRandom(min:Int, max:Int) -> Int {
+public func getRandom(min:Int, max:Int) -> Int {
 	return Int(arc4random_uniform(UInt32(max - min + 1)) + UInt32(min))
 }
 
-class Suit {
-	let name: String
-	let letter: String
+public class Suit {
+	public let name: String
+	public let letter: String
 
-	init(name: String, letter: String) {
+	public init(name: String, letter: String) {
 		self.name = name
 		self.letter = letter
 	}
 
-	static let suits: Array<Suit> = [
+	public static let suits: Array<Suit> = [
 		Suit(name: "Spades", letter: "S"),
 		Suit(name: "Hearts", letter: "H"),
 		Suit(name: "Clubs", letter: "C"),
@@ -36,20 +46,20 @@ class Suit {
 	]
 }
 
-class Rank {
-	let name: String
-	let letter: String
-	let rank: Int
-	let value: Int
+public class Rank {
+	public let name: String
+	public let letter: String
+	public let rank: Int
+	public let value: Int
 
-	init(name: String, letter: String, rank: Int, value: Int) {
+	public init(name: String, letter: String, rank: Int, value: Int) {
 		self.name = name
 		self.letter = letter
 		self.rank = rank
 		self.value = value
 	}
 
-	static let ranks: Array<Rank> = [
+	public static let ranks: Array<Rank> = [
 		Rank(name: "Ace", letter: "A", rank: 14, value: 11),
 		Rank(name: "Two", letter: "2", rank: 2, value: 2),
 		Rank(name: "Three", letter: "3", rank: 3, value: 3),
@@ -66,26 +76,26 @@ class Rank {
 	]
 }
 
-class Card: CustomStringConvertible {
-	let suit: Suit
-	let rank: Rank
-	var description: String {
+public class Card: CustomStringConvertible {
+	public let suit: Suit
+	public let rank: Rank
+	public var description: String {
 		return "<\(self.getPrint())>"
 	}
 
-	init(suit: Suit, rank: Rank) {
+	public init(suit: Suit, rank: Rank) {
 		self.suit = suit
 		self.rank = rank
 	}
 
-	func getPrint(abbreviate: Bool=false) -> String {
+	public func getPrint(abbreviate: Bool=false) -> String {
 		if abbreviate {
 			return self.rank.letter + self.suit.letter
 		}
 		return "\(self.rank.name) of \(self.suit.name)"
 	}
 
-	static var cards: Array<Card> {
+	public static var cards: Array<Card> {
 		var cards: Array<Card> = []
 		for suit in Suit.suits {
 			for rank in Rank.ranks {
@@ -96,24 +106,24 @@ class Card: CustomStringConvertible {
 	}
 }
 
-class Deck: CustomStringConvertible {
-	var cards: Array<Card>
-	var description: String {
+public class Deck: CustomStringConvertible {
+	public var cards: Array<Card>
+	public var description: String {
 		return "<\(self.getPrint())>"
 	}
 
-	init(full: Bool=true, shuffle: Bool=false) {
+	public init(full: Bool=true, shuffle: Bool=false) {
 		self.cards = full ? Card.cards : []
 		if shuffle {
 			self.shuffle()
 		}
 	}
 
-	func shuffle(iterations: Int=1) {
-		self.cards = self.cards.shuffle(iterations: iterations)
+	public func shuffle(iterations: Int=1) {
+		self.cards = shuffleCards(array: self.cards, iterations: iterations) as! Array<Card>
 	}
 
-	func getPrint(abbreviate: Bool=false, separator: String=", ") -> String {
+	public func getPrint(abbreviate: Bool=false, separator: String=", ") -> String {
 		var array: Array<String> = []
 		for c in self.cards {
 			array.append(c.getPrint(abbreviate: abbreviate))
@@ -121,6 +131,4 @@ class Deck: CustomStringConvertible {
 		return array.joined(separator: separator)
 	}
 }
-// var d = Deck(shuffle: true)
-// print(d.cards[0])
 
