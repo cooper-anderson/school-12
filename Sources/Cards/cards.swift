@@ -1,16 +1,5 @@
 import Foundation
 
-// public func shuffleCards(array: Array<Any>, iterations: Int=1) -> Array<Any> {
-// 	var new = array
-// 	for _ in 1...iterations {
-// 		var current: Array<Any> = []
-// 		for _ in 1...new.count {
-// 			current.append(new.remove(at: getRandom(min: 0, max: new.count-1)))
-// 		}
-// 		new = current
-// 	}
-// 	return new
-// }
 public extension Array {
 	public func shuffle(iterations: Int=1) -> Array {
 		var new = self
@@ -119,12 +108,21 @@ public class Card: CustomStringConvertible {
 
 public class Deck: CustomStringConvertible {
 	public var cards: Array<Card>
+	public var count: Int {
+		return self.cards.count
+	}
 	public var description: String {
 		return "<\(self.getPrint())>"
 	}
 
-	public init(full: Bool=true, shuffle: Bool=false, visible: Bool=false) {
-		self.cards = full ? Card.cards : []
+	public init(full: Bool=true, shuffle: Bool=false, visible: Bool=false, cards: Array<Card>?=nil) {
+		if full {
+			self.cards = Card.cards
+		} else if let c = cards {
+			self.cards = c
+		} else {
+			self.cards = []
+		}
 		if shuffle {
 			self.shuffle()
 		}
@@ -143,8 +141,26 @@ public class Deck: CustomStringConvertible {
 		return index < self.cards.count ? self.cards.remove(at: index) : nil
 	}
 
+	@discardableResult public func popCards(count: Int=2) -> Array<Card>? {
+		if count > self.cards.count {
+			return nil
+		}
+		var list: Array<Card> = []
+		for _ in 1...count {
+			list.append(self.popCard()!)
+		}
+		return list
+	}
+
 	@discardableResult public func addCard(_ card: Card) -> Deck {
 		self.cards.insert(card, at: 0)
+		return self
+	}
+
+	@discardableResult public func addCards(_ cards: Array<Card>) -> Deck {
+		for c in cards {
+			self.addCard(c)
+		}
 		return self
 	}
 
