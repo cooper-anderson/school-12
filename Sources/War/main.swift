@@ -256,20 +256,9 @@ func logMessage(_ message: String="") {
 	addstr(message)
 }
 
-let screenWidth = getmaxx(stdscr)
-let screenHeight = getmaxy(stdscr)
-var d: Deck = Deck(shuffle: true)
-var posx: Int32 = 0
-var posy: Int32 = 0
-
-let simple: Bool = false
-let w: Int = simple ? 4 : 11
-let h: Int = simple ? 3 : 8
 let war: War = War(leftName: name1 == "" ? "Player 1" : name1, rightName: name2 == "" ? "Player 2" : name2, duration: duration)
 var log = ""
 var gameRunning = true
-
-clear()
 
 while gameRunning {
 	flushinp()
