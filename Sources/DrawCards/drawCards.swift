@@ -1,8 +1,5 @@
 import Foundation
-// import Darwin.ncurses
 import CNCurses
-// import func Darwin.ncurses.move
-// import func Darwin.ncurses.addstr
 import Cards
 
 public extension Card {

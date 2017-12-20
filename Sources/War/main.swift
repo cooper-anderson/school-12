@@ -17,13 +17,48 @@ func getNumber(_ query: String="") -> Int {
 	}
 }
 
+func getInput(query: String, x: Int32, y: Int32) -> String {
+	var input = ""
+	var curx = x + Int32(query.characters.count)
+	let backspace = Character(UnicodeScalar(127))
+	let delimeter = Character("\n")
+	curs_set(1)
+	move(y, x)
+	addstr(query)
+	move(y, curx)
+	refresh()
+	while true {
+		let ic = UInt32(getch())
+		let c = Character(UnicodeScalar(ic)!)
+		switch c {
+			case backspace:
+				guard curx != x + Int32(query.characters.count) else { break }
+				curx -= 1
+				move(y, curx)
+				delch()
+				refresh()
+				input = String(input.characters.dropLast())
+			case delimeter:
+				curs_set(0)
+				return input
+			default:
+				if isprint(Int32(ic)) != 0 && String(c).characters.count == 1 {
+					addch(UInt32(ic))
+					curx += 1
+					refresh()
+					input.append(c)
+				}
+		}
+	}
+}
+
 print("Enter the first name: ", terminator: "")
 let name1 = readLine()!
 print("Enter the second name: ", terminator: "")
 let name2 = readLine()!
-let duration = max(min(getNumber("Enter the speed (default 32): "), 128), 1)
+var duration = max(min(getNumber("Enter the speed (default 32): "), 128), 1)
 print("Do you want to play manually (Y/n): ", terminator: "")
-let automode = readLine()!.lowercased().characters.contains("n")
+var automode = readLine()!.lowercased().characters.contains("n")
 var superfastmode = false
 if automode {
 	print("Do you want to use super-fast mode (y/N): ", terminator: "")
@@ -109,7 +144,7 @@ class War {
 	var tableRight: Array<Card> = []
 	var movingCards: Array<MovingCard> = []
 	var warCount: Int = -1
-	let duration: Int
+	var duration: Int
 	var round: Int = 0
 	var animating: Bool {
 		for c in self.movingCards {
@@ -141,40 +176,49 @@ class War {
 		self.movingCards.append(MovingCard(card: rightCard, duration: self.duration, start: [War.width-13, 3], end: [x, y]))
 	}
 
+	func winRound(deck: Deck, end: Array<Int32>=[]) {
+		if self.movingCards.count == 0 { return }
+		for c in self.movingCards {
+			c.reset(deck: deck, duration: self.duration, start: c.end, end: end)
+		}
+		self.tableLeft = []
+		self.tableRight = []
+		self.round += 1
+	}
+
+	@discardableResult func winRoundLeft() -> Int {
+		self.winRound(deck: self.left.discard, end: [1, 12])
+		return 1
+	}
+
+	@discardableResult func winRoundRight() -> Int {
+		self.winRound(deck: self.right.discard, end: [War.width - 13, 12])
+		return 2
+	}
+
+	func activateWar() {
+		self.warCount = 3
+	}
+
 	@discardableResult func update() -> Int {
 
 		var returnValue = 0
 
 		if warCount < 0 {
 			if self.tableLeft.count + self.tableRight.count > 0 {
-				var deck: Deck? = nil
-				var end: Array<Int32> = []
 				if self.tableLeft.last!.rank.rank == self.tableRight.last!.rank.rank {
-					self.warCount = 3
+					self.activateWar()
 				} else if self.tableLeft.last!.rank.rank > self.tableRight.last!.rank.rank {
-					deck = self.left.discard
-					end = [1, 12]
-					self.round += 1
-					returnValue = 1
+					return self.winRoundLeft()
 				} else {
-					deck = self.right.discard
-					end = [War.width - 13, 12]
-					self.round += 1
-					returnValue = 2
-				}
-				if let d = deck {
-					for c in self.movingCards {
-						c.reset(deck: d, duration: self.duration, start: c.end, end: end)
-					}
-					self.tableLeft = []
-					self.tableRight = []
-					return returnValue
+					return self.winRoundRight()
 				}
 			}
 		}
 		let leftCard: Card
 		let rightCard: Card
 		returnValue = self.warCount < 1 ? 0 : 3
+		if self.left.hand.count + self.left.discard.count + self.right.hand.count + self.right.discard.count == 0 { return 6 }
 		if let lc = self.left.drawCard() {
 			leftCard = lc.flip(visible: self.warCount < 1)
 		} else {
@@ -256,53 +300,97 @@ func logMessage(_ message: String="") {
 	addstr(message)
 }
 
-let war: War = War(leftName: name1 == "" ? "Player 1" : name1, rightName: name2 == "" ? "Player 2" : name2, duration: duration)
-var log = ""
-var gameRunning = true
-
-while gameRunning {
-	flushinp()
-	clear()
-	war.draw()
-
-	logMessage(log)
-
-	refresh()
-
-	if !war.animating {
-		let c = automode ? 32 : getch()
-		if c == 32 {
-			switch war.update() {
-			case 0:
-				log = "Both players play a card"
-			case 1:
-				log = "\(war.left.name) wins round #\(war.round)"
-			case 2:
-				log = "\(war.right.name) wins round #\(war.round)"
-			case 3:
-				log = "WAR!"
-			case 4:
-				log = "\(war.right.name) WINS after \(war.round) rounds!"
-				gameRunning = false
-			case 5:
-				log = "\(war.left.name) WINS after \(war.round) rounds!"
-				gameRunning = false
-			default:
-				log = ""
-			}
-		} else if c == 113 {
-			break
-		}
+func setLog(value: Int=0, war: War) -> String {
+	let log: String
+	switch value {
+	case 0:
+		log = "Both players play a card"
+	case 1:
+		log = "\(war.left.name) wins round #\(war.round)"
+	case 2:
+		log = "\(war.right.name) wins round #\(war.round)"
+	case 3:
+		log = "WAR!"
+	case 4:
+		log = "\(war.right.name) WINS after \(war.round) rounds!"
+	case 5:
+		log = "\(war.left.name) WINS after \(war.round) rounds!"
+	case 6:
+		log = "TIE! YOU SHOULD GO BUY A LOTTERY TICKET!"
+	default:
+		log = ""
 	}
-	if !superfastmode {
-		usleep(1000000/60)
-	}
+	return log
 }
 
-if !gameRunning {
-	logMessage(log)
-	while getch() == 32 {
-		// Stop the user from exiting with <space>
+var replay: Bool = true
+
+while replay {
+	replay = false
+	let war: War = War(leftName: name1 == "" ? "Player 1" : name1, rightName: name2 == "" ? "Player 2" : name2, duration: duration)
+	var log = ""
+	var gameRunning = true
+
+	while gameRunning {
+		flushinp()
+		clear()
+		war.draw()
+		logMessage(log)
+		refresh()
+
+		if !war.animating {
+			let c = automode ? 32 : getch()
+			var value: Int = -1
+			if c == 32 {
+				value = war.update()
+				gameRunning = ![4, 5, 6].contains(value)
+			} else if c == 91 {
+				value = war.winRoundLeft()
+			} else if c == 93 {
+				value = war.winRoundRight()
+			} else if c == 45 {
+				if war.warCount == -1 {
+					war.activateWar()
+				}
+				value = war.update()
+			} else if c == 97 {
+				logMessage("Continue the rest of the game in autopilot mode? (y/n)")
+				refresh()
+				if getch() == 121 {
+					automode = true
+				}
+			} else if c == 115 {
+				while true {
+					let input = getInput(query: "Enter the new speed: ", x: 0, y: War.height-2)
+					if input == "" {
+						break
+					} else if let number = Int(input) {
+						war.duration = max(min(number, 128), 0)
+						break
+					}
+				}
+			} else if c == 113 {
+				break
+			}
+			log = setLog(value: value, war: war)
+		}
+		if !superfastmode {
+			usleep(1000000/60)
+		}
+	}
+
+	if !gameRunning {
+		logMessage(log + " Play again? (y/n)")
+		refresh()
+		while true {
+			let c = getch()
+			if c == 121 {
+				replay = true
+				break
+			} else if c == 110 {
+				break
+			}
+		}
 	}
 }
 
