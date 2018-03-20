@@ -47,7 +47,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="zJ4-qv-iyc" kind="show" id="6qD-Uv-0Ga"/>
+                                    <segue destination="zJ4-qv-iyc" kind="show" identifier="" id="6qD-Uv-0Ga"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$0000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWk-IQ-ovy">
@@ -169,7 +169,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="deposit:" destination="1Fc-Ih-gOP" eventType="touchUpInside" id="rYD-3E-RNn"/>
                                                     <segue destination="BYZ-38-t0r" kind="show" id="bZr-uA-o4B"/>
                                                 </connections>
                                             </button>
@@ -312,7 +311,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="withdraw:" destination="zJ4-qv-iyc" eventType="touchUpInside" id="l6E-Pj-Ld0"/>
                                                     <segue destination="BYZ-38-t0r" kind="show" id="8mo-lP-5BP"/>
                                                 </connections>
                                             </button>
@@ -356,6 +354,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="eJA-eQ-2Pe"/>
+        <segue reference="8mo-lP-5BP"/>
     </inferredMetricsTieBreakers>
 </document>

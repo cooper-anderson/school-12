@@ -35,13 +35,6 @@ class WithdrawViewController: UIViewController {
     @IBAction func actionOnes(_ sender: Any) {
         labelOnes.text = String(Int(stepperOnes.value))
     }
-    @IBAction func withdraw(_ sender: Any) {
-        balance += stepperThousands.value * 1000
-        balance += stepperHundreds.value * 100
-        balance += stepperTens.value * 10
-        balance += stepperOnes.value
-        print("Withdraw")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,10 +52,15 @@ class WithdrawViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        balance += stepperThousands.value * 1000
+        balance += stepperHundreds.value * 100
+        balance += stepperTens.value * 10
+        balance += stepperOnes.value
         if let vc = segue.destination as? ViewController {
-            print("Prepare")
             if balance <= balanceStart {
                 vc.balance = balanceStart - balance
+            } else {
+                vc.balance = balanceStart
             }
         }
     }

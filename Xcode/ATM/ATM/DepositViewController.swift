@@ -35,12 +35,6 @@ class DepositViewController: UIViewController {
     @IBAction func actionOnes(_ sender: Any) {
         labelOnes.text = String(Int(stepperOnes.value))
     }
-    @IBAction func deposit(_ sender: Any) {
-        balance += stepperThousands.value * 1000
-        balance += stepperHundreds.value * 100
-        balance += stepperTens.value * 10
-        balance += stepperOnes.value
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +51,10 @@ class DepositViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        balance += stepperThousands.value * 1000
+        balance += stepperHundreds.value * 100
+        balance += stepperTens.value * 10
+        balance += stepperOnes.value
         if let vc = segue.destination as? ViewController {
             vc.balance = balanceStart + balance
         }
