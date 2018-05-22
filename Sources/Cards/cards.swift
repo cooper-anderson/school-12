@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 public extension Array {
 	public func shuffle(iterations: Int=1) -> Array {
@@ -66,17 +67,21 @@ public class Rank {
 }
 
 public class Card: CustomStringConvertible {
+	static let back:UIImage = UIImage(named: "card_back.png")!
 	public let suit: Suit
 	public let rank: Rank
 	public var visible: Bool
-	public var description: String {
-		return "<\(self.getPrint())>"
-	}
+	public var description: String {return "<\(self.getPrint())>"}
+	public let imageView:UIImageView
+    public let image:UIImage
 
 	public init(suit: Suit, rank: Rank, visible: Bool=true) {
 		self.suit = suit
 		self.rank = rank
 		self.visible = visible
+		self.imageView = UIImageView(frame: CGRect(x: 50, y: 50, width: 80, height: 116))
+        self.image = UIImage(named: ((self.rank.value == 10) ? ("10") : (self.rank.value <= 9) ? (String(self.rank.rank)) : (self.rank.name.lowercased())) + "_of_" + self.suit.name.lowercased() + ".png")!
+        self.imageView.image = self.image
 	}
 
 	public func getPrint(abbreviate: Bool=false) -> String {
@@ -94,6 +99,29 @@ public class Card: CustomStringConvertible {
 		self.visible = !self.visible
 		return self
 	}
+    
+    public func draw(_ view:UIView) {
+        view.addSubview(self.imageView)
+    }
+    
+    public func move(x:CGFloat, y:CGFloat) {
+        self.imageView.center.x = x
+        self.imageView.center.y = y
+    }
+    
+    public func move(_ waypoint:UIImageView) {
+        self.move(x: waypoint.center.x, y: waypoint.center.y)
+    }
+    
+    public func animate(x:CGFloat, y:CGFloat) {
+        UIView.animate(withDuration: 0.25, animations: { () -> Void in
+            self.move(x: x, y: y)
+        })
+    }
+    
+    public func animate(_ waypoint:UIImageView) {
+        self.animate(x: waypoint.center.x, y: waypoint.center.y)
+    }
 
 	public static var cards: Array<Card> {
 		var cards: Array<Card> = []
