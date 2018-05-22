@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Menlo.ttc">
+            <string>Menlo-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Blackjack" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="felt.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="BCf-KT-EOV">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Zxb-oV-qym">
+                                <rect key="frame" x="12" y="36" width="350" height="152"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
+                                <subviews>
+                                    <stackView opaque="NO" tag="-1" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="99I-k4-3dX">
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="116"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="card_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="yPm-p6-vDB">
+                                                <rect key="frame" x="0.0" y="0.0" width="80" height="116"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="card_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="71l-wd-SGy">
+                                                <rect key="frame" x="90" y="0.0" width="80" height="116"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="card_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="gUa-7R-Ify">
+                                                <rect key="frame" x="180" y="0.0" width="80" height="116"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="card_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="gT2-bS-hz3">
+                                                <rect key="frame" x="270" y="0.0" width="80" height="116"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7DV-cL-5ma">
+                                        <rect key="frame" x="0.0" y="132" width="350" height="20"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Tji-aV-Ybu">
+                                <rect key="frame" x="16" y="621" width="98" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lO1-Ui-ciG">
+                                        <rect key="frame" x="0.0" y="0.0" width="41" height="30"/>
+                                        <color key="backgroundColor" red="0.44705882352941173" green="0.53725490196078429" blue="0.85490196078431369" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Hit">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="Hit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bNj-8b-bIz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TXj-Qf-o29">
+                                        <rect key="frame" x="57" y="0.0" width="41" height="30"/>
+                                        <color key="backgroundColor" red="0.44705882349999998" green="0.53725490200000003" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Stand">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="Stand:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4P8-Uq-6z1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="-74" translatesAutoresizingMaskIntoConstraints="NO" id="yMO-Ts-Mz0">
+                                <rect key="frame" x="126.44929245283015" y="235" width="122" height="116"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="card_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="vGK-QU-b6B">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="116"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="card_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="fHS-3P-Hj3">
+                                        <rect key="frame" x="6" y="0.0" width="80" height="116"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="card_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="eYR-SO-n1D">
+                                        <rect key="frame" x="12" y="0.0" width="80" height="116"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="card_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="5jc-in-R8F">
+                                        <rect key="frame" x="18" y="0.0" width="80" height="116"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="card_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="vER-iu-ca0">
+                                        <rect key="frame" x="24" y="0.0" width="80" height="116"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="card_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="iVW-yP-kBs">
+                                        <rect key="frame" x="30" y="0.0" width="80" height="116"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="card_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="WGN-PD-EM1">
+                                        <rect key="frame" x="36" y="0.0" width="80" height="116"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="card_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="Uz2-yr-oNy">
+                                        <rect key="frame" x="42" y="0.0" width="80" height="116"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="122" id="fmp-hG-cGJ"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="eIj-ca-co6">
+                                <rect key="frame" x="139" y="405" width="96" height="152"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikm-EW-amB">
+                                        <rect key="frame" x="0.0" y="0.0" width="96" height="20"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" tag="-1" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="-64" translatesAutoresizingMaskIntoConstraints="NO" id="17w-yA-qkG">
+                                        <rect key="frame" x="0.0" y="36" width="96" height="116"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="card_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="w9M-YJ-UPn">
+                                                <rect key="frame" x="0.0" y="0.0" width="80" height="116"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="card_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="Z8g-6P-be5">
+                                                <rect key="frame" x="16" y="0.0" width="80" height="116"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="eIj-ca-co6" firstAttribute="centerX" secondItem="yMO-Ts-Mz0" secondAttribute="centerX" id="AgD-j7-agJ"/>
+                            <constraint firstItem="yMO-Ts-Mz0" firstAttribute="centerX" secondItem="7DV-cL-5ma" secondAttribute="centerX" id="Ft7-Ph-NCa"/>
+                            <constraint firstItem="eIj-ca-co6" firstAttribute="top" secondItem="yMO-Ts-Mz0" secondAttribute="bottom" constant="54" id="GK6-ST-k6C"/>
+                            <constraint firstItem="yMO-Ts-Mz0" firstAttribute="top" secondItem="7DV-cL-5ma" secondAttribute="bottom" constant="47" id="sf3-6N-uxf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="handPlayer" destination="17w-yA-qkG" id="0hQ-O6-v4P"/>
+                        <outlet property="valuePlayer" destination="ikm-EW-amB" id="p1U-N1-kBI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="64.799999999999997" y="33.733133433283363"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="card_back.png" width="80" height="116"/>
+        <image name="felt.jpg" width="612" height="408"/>
+    </resources>
+</document>
