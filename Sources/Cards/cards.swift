@@ -100,27 +100,32 @@ public class Card: CustomStringConvertible {
 		return self
 	}
     
-    public func draw(_ view:UIView) {
+    @discardableResult public func draw(_ view:UIView) -> Card {
         view.addSubview(self.imageView)
+        return self
     }
     
-    public func move(x:CGFloat, y:CGFloat) {
+    @discardableResult public func move(x:CGFloat, y:CGFloat) -> Card {
         self.imageView.center.x = x
         self.imageView.center.y = y
+        return self
     }
     
-    public func move(_ waypoint:UIImageView) {
+    @discardableResult public func move(_ waypoint:UIImageView) -> Card {
         self.move(x: waypoint.center.x, y: waypoint.center.y)
+        return self
     }
     
-    public func animate(x:CGFloat, y:CGFloat) {
+    @discardableResult public func animate(x:CGFloat, y:CGFloat) -> Card {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.move(x: x, y: y)
         })
+        return self
     }
     
-    public func animate(_ waypoint:UIImageView) {
+    @discardableResult public func animate(_ waypoint:UIImageView) -> Card {
         self.animate(x: waypoint.center.x, y: waypoint.center.y)
+        return self
     }
 
 	public static var cards: Array<Card> {

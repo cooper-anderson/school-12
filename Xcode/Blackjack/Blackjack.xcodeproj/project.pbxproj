@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		522FBEDB20B6DF2D004FCE0D /* CountingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522FBEDA20B6DF2D004FCE0D /* CountingLabel.swift */; };
+		522FBEDF20B6E585004FCE0D /* gold.png in Resources */ = {isa = PBXBuildFile; fileRef = 522FBEDE20B6E585004FCE0D /* gold.png */; };
 		5282219D20AE312C007BB68A /* felt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5282219C20AE312C007BB68A /* felt.jpg */; };
 		529343852086AA710005811B /* Blackjack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529343842086AA710005811B /* Blackjack.swift */; };
 		52F556A1207D6EE90087642D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F556A0207D6EE90087642D /* AppDelegate.swift */; };
@@ -73,6 +75,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		522FBEDA20B6DF2D004FCE0D /* CountingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountingLabel.swift; path = "../../Average of Three Numbers/Average of Three Numbers/CountingLabel.swift"; sourceTree = "<group>"; };
+		522FBEDE20B6E585004FCE0D /* gold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gold.png; path = ../../../../../Downloads/gold.png; sourceTree = "<group>"; };
 		5282219C20AE312C007BB68A /* felt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = felt.jpg; sourceTree = "<group>"; };
 		529343842086AA710005811B /* Blackjack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blackjack.swift; sourceTree = "<group>"; };
 		52F5569D207D6EE90087642D /* Blackjack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blackjack.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +174,8 @@
 		52F5569F207D6EE90087642D /* Blackjack */ = {
 			isa = PBXGroup;
 			children = (
+				522FBEDE20B6E585004FCE0D /* gold.png */,
+				522FBEDA20B6DF2D004FCE0D /* CountingLabel.swift */,
 				5282219C20AE312C007BB68A /* felt.jpg */,
 				52F556B2207D6F700087642D /* cards.swift */,
 				52F556A0207D6EE90087642D /* AppDelegate.swift */,
@@ -346,6 +352,7 @@
 				D62C0067050AD76CE292BDBD /* 6_of_diamonds.png in Resources */,
 				D62C07EA70A26F26FFC04544 /* 7_of_diamonds.png in Resources */,
 				5282219D20AE312C007BB68A /* felt.jpg in Resources */,
+				522FBEDF20B6E585004FCE0D /* gold.png in Resources */,
 				D62C0B3E69E184FA40BFEBD1 /* 8_of_diamonds.png in Resources */,
 				D62C084672F1B288025DBE04 /* 9_of_diamonds.png in Resources */,
 				D62C0C7825FB326A289FEEDD /* ace_of_hearts.png in Resources */,
@@ -374,6 +381,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				522FBEDB20B6DF2D004FCE0D /* CountingLabel.swift in Sources */,
 				529343852086AA710005811B /* Blackjack.swift in Sources */,
 				52F556B3207D6F700087642D /* cards.swift in Sources */,
 				52F556A3207D6EE90087642D /* ViewController.swift in Sources */,

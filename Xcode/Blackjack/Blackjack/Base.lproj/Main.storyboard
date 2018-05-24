@@ -28,8 +28,29 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="-74" translatesAutoresizingMaskIntoConstraints="NO" id="yMO-Ts-Mz0">
-                                <rect key="frame" x="126" y="285.5" width="122" height="116"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TCi-zE-221" userLabel="Indicator">
+                                <rect key="frame" x="146" y="34" width="80" height="116"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="gold.png" translatesAutoresizingMaskIntoConstraints="NO" id="qMN-Qq-qoT" userLabel="Win Player">
+                                <rect key="frame" x="-1" y="522" width="375" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="J44-KE-uLK"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7DV-cL-5ma" customClass="CountingLabel" customModule="Blackjack" customModuleProvider="target">
+                                <rect key="frame" x="181" y="158" width="10.5" height="21"/>
+                                <color key="backgroundColor" white="0.53995710100446426" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" spacing="-74" translatesAutoresizingMaskIntoConstraints="NO" id="yMO-Ts-Mz0">
+                                <rect key="frame" x="125" y="211" width="122" height="116"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="vGK-QU-b6B">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="116"/>
@@ -57,11 +78,31 @@
                                     </imageView>
                                 </subviews>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mry-Xt-xMW" userLabel="Indicator">
+                                <rect key="frame" x="169" y="211" width="80" height="116"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="nA7-wi-dZJ" userLabel="Indicator">
+                                <rect key="frame" x="147.5" y="340.5" width="80" height="116"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikm-EW-amB" customClass="CountingLabel" customModule="Blackjack" customModuleProvider="target">
+                                <rect key="frame" x="147" y="463" width="80" height="20"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4X4-6j-qWQ" userLabel="Indicator">
+                                <rect key="frame" x="147" y="491" width="80" height="116"/>
+                            </imageView>
                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Tji-aV-Ybu">
                                 <rect key="frame" x="16" y="621" width="343" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lO1-Ui-ciG">
-                                        <rect key="frame" x="0.0" y="0.0" width="163.5" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="103.5" height="30"/>
                                         <color key="backgroundColor" red="0.44705882352941173" green="0.53725490196078429" blue="0.85490196078431369" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Hit">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -75,8 +116,23 @@
                                             <action selector="Hit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bNj-8b-bIz"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TXj-Qf-o29">
-                                        <rect key="frame" x="179.5" y="0.0" width="163.5" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUk-G6-v2z">
+                                        <rect key="frame" x="119.5" y="0.0" width="104" height="30"/>
+                                        <color key="backgroundColor" red="0.44705882349999998" green="0.53725490200000003" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Reset">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="Reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="k24-z0-Hh1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TXj-Qf-o29">
+                                        <rect key="frame" x="239.5" y="0.0" width="103.5" height="30"/>
                                         <color key="backgroundColor" red="0.44705882349999998" green="0.53725490200000003" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Stand">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -92,53 +148,43 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikm-EW-amB">
-                                <rect key="frame" x="147" y="438" width="80" height="20"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97z-Cl-3xp" userLabel="Center">
+                                <rect key="frame" x="165" y="323" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4X4-6j-qWQ" userLabel="Indicator">
-                                <rect key="frame" x="147" y="466" width="80" height="116"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7DV-cL-5ma">
-                                <rect key="frame" x="182" y="232.5" width="10.5" height="21"/>
-                                <color key="backgroundColor" white="0.53995710100446426" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TCi-zE-221" userLabel="Indicator">
-                                <rect key="frame" x="147" y="108" width="80" height="116"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mry-Xt-xMW" userLabel="Indicator">
-                                <rect key="frame" x="170" y="285" width="80" height="116"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="gold.png" translatesAutoresizingMaskIntoConstraints="NO" id="dRv-Y3-rFw" userLabel="Win Dealer">
+                                <rect key="frame" x="0.0" y="65" width="375" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="vEn-R3-AZl"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="7DV-cL-5ma" firstAttribute="top" secondItem="TCi-zE-221" secondAttribute="bottom" constant="64" id="0Jf-aF-gCj"/>
-                            <constraint firstItem="yMO-Ts-Mz0" firstAttribute="top" secondItem="7DV-cL-5ma" secondAttribute="bottom" constant="32" id="0x5-ne-6oL"/>
+                            <constraint firstItem="yMO-Ts-Mz0" firstAttribute="top" secondItem="7DV-cL-5ma" secondAttribute="bottom" constant="16" id="0x5-ne-6oL"/>
+                            <constraint firstItem="qMN-Qq-qoT" firstAttribute="centerY" secondItem="4X4-6j-qWQ" secondAttribute="centerY" id="4V9-EO-7Sa"/>
+                            <constraint firstItem="97z-Cl-3xp" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="4Zs-XF-ho4"/>
                             <constraint firstItem="4X4-6j-qWQ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="7i8-SI-pFs"/>
+                            <constraint firstItem="97z-Cl-3xp" firstAttribute="top" secondItem="yMO-Ts-Mz0" secondAttribute="bottom" constant="32" id="9fl-At-03g"/>
                             <constraint firstItem="yMO-Ts-Mz0" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="A0x-9o-a44"/>
+                            <constraint firstItem="dRv-Y3-rFw" firstAttribute="centerY" secondItem="TCi-zE-221" secondAttribute="centerY" id="B9z-R3-luy"/>
+                            <constraint firstItem="nA7-wi-dZJ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="BTZ-E2-k7w"/>
+                            <constraint firstItem="dRv-Y3-rFw" firstAttribute="centerX" secondItem="TCi-zE-221" secondAttribute="centerX" id="Cld-Vz-Aqw"/>
                             <constraint firstItem="4X4-6j-qWQ" firstAttribute="top" secondItem="ikm-EW-amB" secondAttribute="bottom" constant="64" id="FYB-Wt-bhb"/>
                             <constraint firstItem="TCi-zE-221" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="IqG-RP-dSC"/>
                             <constraint firstItem="Tji-aV-Ybu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="K6P-0T-1Er"/>
+                            <constraint firstItem="dRv-Y3-rFw" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Kf9-C4-scA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Tji-aV-Ybu" secondAttribute="bottom" constant="16" id="OFt-nu-FlP"/>
-                            <constraint firstItem="yMO-Ts-Mz0" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="XK6-mb-6DB"/>
+                            <constraint firstItem="nA7-wi-dZJ" firstAttribute="top" secondItem="yMO-Ts-Mz0" secondAttribute="bottom" constant="29" id="SRV-cr-wEQ"/>
+                            <constraint firstItem="97z-Cl-3xp" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="SaF-iv-8Sm"/>
+                            <constraint firstItem="qMN-Qq-qoT" firstAttribute="centerX" secondItem="4X4-6j-qWQ" secondAttribute="centerX" id="V7C-or-8rE"/>
                             <constraint firstItem="Mry-Xt-xMW" firstAttribute="leading" secondItem="Uz2-yr-oNy" secondAttribute="centerX" id="Xtz-MU-71w"/>
                             <constraint firstItem="7DV-cL-5ma" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ir1-Td-6Jy"/>
-                            <constraint firstItem="ikm-EW-amB" firstAttribute="top" secondItem="yMO-Ts-Mz0" secondAttribute="bottom" constant="32" id="pTf-HN-Qaj"/>
+                            <constraint firstItem="qMN-Qq-qoT" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="nAh-qZ-kN4"/>
+                            <constraint firstItem="ikm-EW-amB" firstAttribute="top" secondItem="nA7-wi-dZJ" secondAttribute="bottom" constant="22" id="pTf-HN-Qaj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Tji-aV-Ybu" secondAttribute="trailing" constant="16" id="qNU-bP-ubB"/>
                             <constraint firstItem="Mry-Xt-xMW" firstAttribute="top" secondItem="Uz2-yr-oNy" secondAttribute="centerY" id="qYC-Nr-IkK"/>
                             <constraint firstItem="ikm-EW-amB" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="zck-kD-6BS"/>
@@ -146,11 +192,16 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="buttonHit" destination="lO1-Ui-ciG" id="AeA-VR-gqZ"/>
+                        <outlet property="buttonStand" destination="TXj-Qf-o29" id="BMi-GL-iIX"/>
                         <outlet property="valueDealer" destination="7DV-cL-5ma" id="oJf-JC-yhR"/>
                         <outlet property="valuePlayer" destination="ikm-EW-amB" id="p1U-N1-kBI"/>
                         <outlet property="waypointDealer" destination="TCi-zE-221" id="slv-xh-je9"/>
                         <outlet property="waypointDeck" destination="Mry-Xt-xMW" id="pQt-yZ-ozB"/>
+                        <outlet property="waypointPile" destination="nA7-wi-dZJ" id="Owg-3g-0hh"/>
                         <outlet property="waypointPlayer" destination="4X4-6j-qWQ" id="oom-NS-jpD"/>
+                        <outlet property="winDealer" destination="dRv-Y3-rFw" id="g3g-Ox-JfV"/>
+                        <outlet property="winPlayer" destination="qMN-Qq-qoT" id="jsA-tJ-ZN8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -161,5 +212,6 @@
     <resources>
         <image name="card_back.png" width="80" height="116"/>
         <image name="felt.jpg" width="612" height="408"/>
+        <image name="gold.png" width="749" height="684"/>
     </resources>
 </document>
